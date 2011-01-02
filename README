@@ -1,0 +1,5 @@
+A Google Chrome extension for scuttle.org's open source bookmarking and taging tool.
+
+This requries that you have scuttle instaled on your local system as http://localhost/scuttle.
+Tomorow's version will fix this so you can put in the URL of your scuttle install.
+
