@@ -1,5 +1,6 @@
 A Google Chrome extension for scuttle.org's open source bookmarking and taging tool.
 
-This requries that you have scuttle instaled on your local system as http://localhost/scuttle.
-Tomorow's version will fix this so you can put in the URL of your scuttle install.
+You can configure where you have Scuttle installed.
+You can set the username that is used to log into scuttle.
+The default locaiton for Scuttle is on your local system: http://localhost/scuttle.
 

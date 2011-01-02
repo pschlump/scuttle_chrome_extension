@@ -15,8 +15,17 @@ function executeSaveToScrapbook(tab_id, title, url, selection)
 	}
 
 	var username = window.localStorage.customUserName;
+	var scuttle = window.localStorage.scuttleUrl;
+	var action_url;
 
-	var action_url = "http://localhost/scuttle/bookmarks.php/"+username+"?action=add";
+	if ( typeof scuttle === "string" )
+	{
+		action_url = scuttle+username+"?action=add";
+	}
+	else
+	{
+		action_url = "http://localhost/scuttle/bookmarks.php/"+username+"?action=add";
+	}
 
 	if (url.length > 0) 
 		action_url += "&address=" + encodeURIComponent(url);
