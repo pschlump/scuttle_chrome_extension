@@ -1,0 +1,2 @@
+1. Need to do some more checking that the user has correctly configured.
+2. Need to be able to set the Scuttle URL

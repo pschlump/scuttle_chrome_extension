@@ -1,0 +1,64 @@
+<!--
+// Copyright (C) Philip Schlump, 2011.
+// BSD Type License in LICENSE.
+-->
+<html>
+<head>
+<script>
+
+function executeSaveToScrapbook(tab_id, title, url, selection)
+{
+	if (window.localStorage == null)
+	{
+		alert("LocalStorage must be enabled for to use this.");
+		return;
+	}
+
+	var username = window.localStorage.customUserName;
+
+	var action_url = "http://localhost/scuttle/bookmarks.php/"+username+"?action=add";
+
+	if (url.length > 0) 
+		action_url += "&address=" + encodeURIComponent(url);
+
+	if (title.length > 0)
+		action_url += "&title=" + encodeURIComponent(title);
+
+	// console.log ( "url:"+action_url );
+
+	chrome.tabs.create({ url: action_url });
+}
+
+chrome.browserAction.onClicked.addListener(
+	function(tab)
+	{
+		if (tab.url.indexOf("http:") != 0 && tab.url.indexOf("https:") != 0)
+		{
+			executeSaveToScrapbook(tab.id, "", tab.url, "");
+		}
+		else
+		{
+			chrome.tabs.executeScript(null, {file: "content_script.js"});
+		}
+	}
+);
+
+chrome.extension.onConnect.addListener(
+	function(port)
+	{
+		var tab = port.sender.tab;
+		port.onMessage.addListener(
+			function(info)
+			{
+				var max_length = 1024;
+				if (info.selection.length > max_length)
+					info.selection = info.selection.substring(0, max_length);
+				executeSaveToScrapbook(tab.id, info.title, tab.url, info.selection);
+			}
+		);
+	}
+);
+
+</script>
+</head>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<!--
+// Copyright (C) Philip Schlump, 2011.
+// BSD Type License in LICENSE.
+-->
+<html>
+<head>
+	<title>Options for the Save Bookmark / Scrapbook</title>
+<style>
+#providerSelection {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+}
+</style>
+<script>
+
+function saveIt()
+{
+  if (window.localStorage == null) {
+    alert('Local storage is required for changing providers');
+    return;
+  }
+  var inputText = document.getElementById('username');
+  window.localStorage.customUserName = inputText.value;
+}
+
+function main()
+{
+   if (window.localStorage == null) {
+     alert("LocalStorage must be enabled for changing options.");
+     document.getElementById('username').disabled = true;
+     return;
+   }
+
+   if (typeof window.localStorage.customUserName == "string")
+     document.getElementById('username').value = window.localStorage.customUserName;
+}
+</script>
+</head>
+<body onload="main()">
+<table border="0">
+<tr>
+  <td rowspan="2" valign="top" align="center" width="80">
+    <img src="logo_24.png" width="32" height="32" />
+  </td>
+  <td height="22"></td>
+</tr>
+<tr>
+  <td valign="center">
+    <div id="providerSelection">
+    <strong>Input your username for saving the page and scrapbooking:</strong>
+    <br /><br />
+    <input id="username" type="text" name="username" value="" onclick="saveIt()">&nbsp;Your username<br>
+    <input type="button" name="doit" value="Save Username" onclick="saveIt()">
+    </div>
+  </td>
+</tr>
+</table>
+</body>
+</html>

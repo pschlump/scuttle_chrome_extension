@@ -1,0 +1,15 @@
+{
+	  "name": "Bookmark this page"
+	, "description": "This extension adds button to the toolbar which allows you to bookmark the page you are on using scuttle."
+	, "version": "1.0.0"
+	, "background_page": "background.html"
+	, "icons": { "32": "logo_24.png" }
+	, "options_page": "options.html"
+	, "permissions": [
+		"tabs", "http://*/*", "https://*/*"
+	  ]
+	, "browser_action": {
+		"default_title": "Bookmark this page",
+		"default_icon": "icon.png"
+	  }
+}
